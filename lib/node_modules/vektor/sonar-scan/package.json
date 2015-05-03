@@ -1,0 +1,14 @@
+{
+  "name": "sonar-scanner",
+  "version": "0.2.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "johnny-five": "0.7.4",
+    "temporal": "0.2.8",
+    "dualshock-controller": "0.2.0",
+    "array-extended": "0.0.9"
+  }
+}

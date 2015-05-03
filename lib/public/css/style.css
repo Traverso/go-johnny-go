@@ -1,0 +1,54 @@
+#segment-viewer { margin:20px;margin-top:10px; }
+#left-col { width:275px;float:left; }
+#segment-view { margin-left:280px;min-width:905px;border:none;box-shadow:none;position:relative; }
+#graph-loading { background:rgba(255,255,255,0.7);width:920px;height:350px;
+                text-align:center;
+                line-height:350px;
+                position:absolute;top:0px;left:0px; }
+
+ul#target-list.nav>li { padding-left:3px;padding-top:3px;height:28px;cursor:pointer; }
+ul#target-list.nav>li:hover { background-color:#f3f3f3; }
+#target-list.nav>li.no-view .name { color:#e3e3e3; }
+#target-list .visibility { width:28px;float:left; }
+#target-list .name { width:150px;float:left; }
+#target-list .controls { width:85px;float:left; }
+#target-list .color { float:left;margin-right:3px;width:25px; }
+#target-list .red { background-color:#cc3300; }
+#target-list .blue { background-color:#4759B5; }
+#target-list .green { background-color:green; }
+
+ul#cue-list.nav>li { padding-left:3px;padding-top:3px;height:28px;cursor:pointer }
+ul#cue-list.nav>li:hover { background-color:#f3f3f3; }
+#cue-list .name { width:207px;float:left; }
+#cue-list .controls { width:55px;float:left; }
+
+.panel-body { padding:3px; }
+.panel-heading { padding:5px; }
+
+#graph-view { margin-bottom:10px;width:900px;height:310px; }
+.panel { border-radius:0px; }
+
+#segments-table { margin-left:20px;margin-right:10px;width:700px;float:left; }
+#segments-table th.actions{ width:200px; }
+#segments-table #no-segments td { padding:20px;text-align:center; }
+#segments-table .actions { display:none;float:right;padding-top:3px; }
+#segments-table td { vertical-align:middle; }
+#segments-table td a.name { display:block;padding-top:3px;height:25px;min-width:520px;float:left; }
+#segments-table td:hover { background-color:#f3f3f3; }
+
+#playlist-table { width:300px;margin-right:10px;margin-left:20px; }
+#playlist-table #no-playlist-item td { padding:20px;text-align:center; } 
+#playlist-table .actions { display:none;float:right;padding-top:3px; }
+#playlist-table .name { display:block;float:left;font-size:14px;padding-top:3px;padding-bottom:3px; }
+#playlist-table td:hover { background-color:#f3f3f3; }
+
+#targets .controls { display:none; }
+#cues .controls { display:none; }
+#segment-settings
+{
+  padding-right:30px;
+  text-align:right;
+  border-bottom:1px solid #e3e3e3;
+  padding-bottom:10px;
+  margin-bottom:30px;
+}

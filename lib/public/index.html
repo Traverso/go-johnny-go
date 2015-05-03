@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Animax</title>
+
+    <!-- Bootstrap -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+    <div id="segments-page">
+        <ol class="breadcrumb">
+          <li class="active">Segments</li>
+        </ol>
+
+        <table id="segments-table" class="table table-condensed table-bordered">
+          <thead>
+            <tr>
+                <th colspan="2">
+                    Segments
+
+                    <button class="btn btn-default btn-xs pull-right add-segment" title="Add Segment">
+                      <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="no-segments">
+              <td colspan="2">No segments yet, <button class="btn btn-link add-segment">add segment</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table id="playlist-table" class="table table-condensed table-bordered">
+          <thead>
+            <tr>
+                <th colspan="2">
+                    <span class="glyphicon glyphicon-film"></span>
+                    Playlist
+
+                   <button class="play btn btn-default btn-xs pull-right" 
+                      title="Start Playlist" style="margin-left:4px">
+                      <span class="glyphicon glyphicon-play"></span> 
+                   </button>
+
+                   <button class="loop btn btn-default btn-xs pull-right" 
+                             title="Loop"
+                             data-toggle="button"
+                             aria-pressed="false" autocomplete="off">
+                      <span class="glyphicon glyphicon-retweet"></span> 
+                   </button>
+
+                </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="no-playlist-item">
+              <td colspan="2">No items on your playlist</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+
+    </div>
+
+    <div id="segment-page">
+
+        <ol class="breadcrumb">
+          <li><a href="#" class="segments-overview">Segments</a></li>
+          <li class="active segment-name">New Segment</li>
+        </ol>
+
+        
+         <div id="segment-viewer">
+
+
+          <div class="row">
+
+             <div id="segment-settings">
+
+
+               <form class="form-inline">
+                 <span class="segment-name" style="margin-right:20px">
+                   <label>Name:</label>
+                   <input type="text" id="segment-name" value="New Segment" class="form-control input-sm"/>
+                 </span>
+
+                 <span class="segment-duration" style="margin-right:20px">
+                   <label>Duration:</label>
+                   <input type="number" id="segment-duration" value="1000" style="width:75px" class="form-control input-sm"/>
+                   ms
+                 </span>
+
+                 <span class="segment-fps" style="margin-right:20px">
+                   <label>FPS:</label>
+                   <input type="number" id="segment-fps" value="60" style="width:75px" class="form-control input-sm"/>
+                   ms
+                 </span>
+
+                 <span class="segment-duration" style="margin-right:20px">
+                   <label>Easing:</label>
+                   <select id="segment-easing" class="form-control"></select>
+                 </span>
+
+                 <span style="margin-left:50px;margin-right:20px;">
+                   <button class="loop btn btn-default btn-sm" data-toggle="button"
+                             aria-pressed="false" autocomplete="off">
+                      <span class="glyphicon glyphicon-retweet"></span> 
+                      Loop
+                   </button>
+
+                   <button class="play btn btn-default btn-sm">
+                      <span class="glyphicon glyphicon-play"></span> 
+                      Play
+                   </button>
+
+                   <button class="save btn btn-default btn-sm" id="export-segment" style="margin-left:20px">
+                      <span class="glyphicon glyphicon-download-alt"></span> 
+                      Export
+                   </button>
+
+                   <button class="save btn btn-default btn-sm" id="save-segment">
+                      <span class="glyphicon glyphicon-floppy-disk"></span> 
+                      Save
+                   </button>
+
+                   <img src="images/ajax-loader.gif" id="save-loading" style="display:none"/>
+                 </span>
+                </form>
+
+
+               </div><!--end segment settings-->
+           </div><!--end row -->
+
+
+           <div class="row">
+             
+             <div id="left-col">
+
+               <div id="targets" class="panel panel-default" style="margin-bottom:10px;border-radius:0px">
+                  <div class="panel-heading">
+                     <span class="glyphicon glyphicon-record"></span>
+
+                    Targets
+
+                    <button id="add-target" class="btn btn-default btn-xs pull-right" title="Add Target">
+                      <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                  </div>
+
+                  <div class="panel-body">
+                  
+                    <ul id="target-list" class="nav nav-stacked">
+                      <li id="no-targets">
+                        No targets, <button class="btn-link" title="Add Target">create one</button>
+                      </li>
+                    </ul>
+
+                  </div>
+                </div><!--end targets-->
+
+                 <div id="cues" class="panel panel-default">
+                    <div class="panel-heading">
+
+                      <span class="glyphicon glyphicon-time"></span>
+                      Cuepoints
+
+                      <button id="add-cuepoint" class="btn btn-default btn-xs pull-right" title="Add Cue-point">
+                        <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    </div>
+                    <div class="panel-body">
+
+                        <ul id="cue-list" class="nav nav-stacked">
+                          <li id="no-cuepoint">
+                            No cue-points, <button class="btn-link" title="Add Cue-point">create one</button>
+                          </li>
+                        </ul><!--end cue list-->
+
+                    </div>
+                 </div><!--end cues-->
+
+            </div><!--end left col-->
+
+             <div id="segment-view" class="panel panel-default" style="border:none;box-shadow:none">
+
+                <div id="graph-loading">
+                  <img src="images/ajax-loader-big.gif" valign="middle"/>
+                </div>
+                <div class="panel-body" style="border:1px solid #e3e3e3;height:350px;width:920px">
+                  <canvas id="graph-view"></canvas>
+
+                </div>
+             </div>
+          </div>
+
+         <div class="modal fade" id="cuepoint-modal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Cuepoint</h4>
+              </div>
+              <div class="modal-body">
+
+                  <form class="form-horizontal">
+                    <div class="form-group">
+                      <label for="cue-point-ranger" class="col-sm-4 control-label">Cue point</label>
+                      <div class="col-sm-8">
+                        <input type="hidden" id="cue-point-idx" />
+                        <div id="cue-point-range-out" style="width:300px;text-align:center">0.5</div>
+                        <input type="range" oninput="updateModalCue(value)" 
+                          min="0" max="100" value="50" id="cue-point-ranger" style="width:300px"/>
+                      </div>
+                    </div>
+                  </form>
+
+
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save-cuepoint">Save</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+
+
+         <div class="modal fade" id="target-modal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Target</h4>
+              </div>
+              <div class="modal-body">
+
+                  <form class="form-horizontal">
+                    <div class="form-group">
+                      <label for="target-name" class="col-sm-4 control-label">Name</label>
+                      <div class="col-sm-8">
+                        <input type="hidden" id="target-id">
+                        <input type="text" class="form-control" id="target-name" placeholder="Name">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="target-pin" class="col-sm-4 control-label">Servo Pin number</label>
+                      <div class="col-sm-8">
+                        <input type="number" min="1" max="20" class="form-control" 
+                          step="1" id="target-pin" placeholder="Pin number">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="target-color" class="col-sm-4 control-label">Color</label>
+                      <div class="col-sm-8">
+                        <input type="color" id="target-color" placeholder="color">
+                      </div>
+                    </div>
+                  </form>
+
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="save-target" type="button" class="btn btn-primary">Save</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    </div><!--end segment-page-->
+
+    <div id="templates" style="display:none">
+        <table>
+            <tbody id="segment-template">
+              <tr>
+                <td >
+                  
+                  <a href="#" class="edit-segment name" title="Edit Segment"></a>
+
+                  <span class="actions">
+                    <button class="btn btn-default btn-xs playlist-segment" title="Add to Playlist">
+                      <span class="glyphicon glyphicon-film"></span>
+                    </button>
+
+                    <button class="btn btn-default btn-xs" title="Play Segment">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </button>
+
+                    <button class="btn btn-default btn-xs edit-segment" title="Edit Segment" >
+                      <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+
+                    <button class="btn btn-default btn-xs duplicate-segment" title="Duplicate Segment">
+                      <span class="glyphicon glyphicon-duplicate"></span>
+                    </button>
+
+                    <button class="btn btn-default btn-xs delete-segment" title="Delete Segment" >
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                  </span>
+
+                </td>
+              </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <tbody id="playlist-template">
+              <tr>
+                <td>
+                  
+                  <span class="name"></span>
+
+                  <span class="actions">
+
+                    <button class="btn btn-default btn-xs up move-up" title="Move Up" >
+                      <span class="glyphicon glyphicon-arrow-up"></span>
+                    </button>
+
+                    <button class="btn btn-default btn-xs down move-down" title="Move Down">
+                      <span class="glyphicon glyphicon-arrow-down"></span>
+                    </button>
+
+                    <button class="btn btn-default btn-xs remove" title="Remove From Playlist" >
+                      <span class="glyphicon glyphicon-remove-circle"></span>
+                    </button>
+                  </span>
+
+                </td>
+              </tr>
+            </tbody>
+        </table>
+
+        <ul id="target-template">
+              <li>
+                <button class="color btn btn-default btn-xs">&nbsp;</button>
+                <div class="name edit-target">Coxa</div>
+                <div class="controls">
+
+                  <div class="visibility">
+                      <button class="btn btn-default btn-xs hide-show-target">
+                        <span class="glyphicon"></span>
+                      </button>
+                  </div>
+
+                  <button class="btn btn-default btn-xs edit-target">
+                      <span class="glyphicon glyphicon-pencil"></span>
+                  </button>
+
+                  <button class="btn btn-default btn-xs delete-target">
+                      <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                </div>
+              </li>
+        </ul>
+        <ul id="cuepoint-template">
+              <li>
+                <div class="name edit-cue">0.0</div>
+                <div class="controls">
+
+                  <button class="btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-pencil edit-cue"></span>
+                  </button>
+
+                  <button class="btn btn-default btn-xs delete-cue">
+                      <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                </div>
+              </li>
+          </ul>
+    </div>
+
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/paper-full.min.js"></script>
+    <script src="js/segment-graph.js" type="text/paperscript" canvas="graph-view"></script>
+    <script src="js/animax.js" type="text/javascript"></script>
+    <script src="js/ui.js" type="text/javascript"></script>
+  </body>
+</html>
