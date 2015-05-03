@@ -1,15 +1,19 @@
 # Go-Johnny-Go
 ### Browser based UI to manage Johnny Five animations
 
-**Go-Johnny-Go is a web based user interface to create and manage animations to be used with the [Johnny-Five Robotics Programming Framework] (http://johnny-five.io)
+<img src="https://raw.githubusercontent.com/Traverso/go-johnny-go/master/docs/ui.png">
+
+**Go-Johnny-Go is a web based user interface to create and manage animations to be used with the [Johnny-Five Robotics Programming Framework] (http://johnny-five.io)**
 
 Johnny-Five has very powerful [animations capabilities] (http://johnny-five.io/api/animation/)
 but describing keyFrames and cue positions for a lot of servos in code, can be a bit tiring.
 
 Go-Johnny-Go allows you to create and edit animation segments using a browser base user interface. 
 
-This project is still under development. 
-Status: UIX almost done
+##This project is still under development. 
+
+Status: finishing the UIX
+
 Next: JSON Export 
 
 ##Roadmap:
