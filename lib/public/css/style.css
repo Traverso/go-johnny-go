@@ -1,4 +1,38 @@
+#status-bar
+{
+  padding:5px;
+  height:50px;
+  background-color:#e3e3e3;
+  text-align:right;
+  font-size:11px;
+}
+
+#status-bar #brand
+{
+  width:200px;
+  float:left;
+  text-align:left;
+  padding-left:15px;
+  font-size:20px;
+}
+#status { margin-right:25px; }
+.status-light { 
+                width:12px;height:12px;
+                -moz-border-radius: 12px;
+                border-radius: 12px;
+                float:right;
+                margin-right:10px;
+                margin-left:-20px;
+                margin-top:2px;
+               }
+
+.status-label { display:none; }
+.status-light { display:none; }
+
+.disconnected { background-color:#cc3300; }
+.connected { background-color:#06E949; }
 #segment-viewer { margin:20px;margin-top:10px; }
+
 #left-col { width:275px;float:left; }
 #segment-view { margin-left:280px;min-width:905px;border:none;box-shadow:none;position:relative; }
 #graph-loading { background:rgba(255,255,255,0.7);width:920px;height:350px;
@@ -44,6 +78,7 @@ ul#cue-list.nav>li:hover { background-color:#f3f3f3; }
 
 #targets .controls { display:none; }
 #cues .controls { display:none; }
+
 #segment-settings
 {
   padding-right:30px;
