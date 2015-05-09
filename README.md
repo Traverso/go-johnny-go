@@ -17,13 +17,10 @@ Go-Johnny-Go allows you to create and edit animation segments using a browser ba
 
 ##This project is still under development. 
 
-Status: finishing the UIX
-
-Next: Control hardware via Sockets.IO
+Status: working the UIX
 
 ##Roadmap:
-* Control attached hardware via Sockets.IO
-* Change ease type for keyFrames
+* Manage ease type for keyFrames
 * Allow keyFrames to be null
 
 ## License
