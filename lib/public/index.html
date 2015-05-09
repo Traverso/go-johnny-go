@@ -301,20 +301,7 @@
               <div class="modal-body">
 
                   <form class="form-horizontal">
-                    <div class="form-group">
-                      <label for="target-name" class="col-sm-4 control-label">Name</label>
-                      <div class="col-sm-8">
-                        <input type="hidden" id="target-id">
-                        <input type="text" class="form-control" id="target-name" placeholder="Name">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="target-pin" class="col-sm-4 control-label">Servo Pin number</label>
-                      <div class="col-sm-8">
-                        <input type="number" min="1" max="20" class="form-control" 
-                          step="1" id="target-pin" placeholder="Pin number">
-                      </div>
-                    </div>
+
 
                     <div class="form-group">
                       <label for="target-color" class="col-sm-4 control-label">Color</label>
@@ -322,6 +309,52 @@
                         <input type="color" id="target-color" placeholder="color">
                       </div>
                     </div>
+
+                    <div class="form-group">
+                      <label for="target-name" class="col-sm-4 control-label">Name</label>
+                      <div class="col-sm-8">
+                        <input type="hidden" id="target-id">
+                        <input type="text" class="form-control" id="target-name" placeholder="Name">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="target-pin" class="col-sm-4 control-label">Pin number</label>
+                      <div class="col-sm-8">
+                        <input type="number" min="1" max="20" class="form-control" 
+                          step="1" id="target-pin" placeholder="Pin number">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="target-controller" class="col-sm-4 control-label">Controller</label>
+                      <div class="col-sm-8">
+                        <select id="target-controller" class="form-control">
+                          <option value="Standard">Standard</option>
+                          <option value="PCA9685">PCA9685</option>
+                        </select>
+                      </div>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="target-invert" class="col-sm-4 control-label">Is inverted</label>
+                      <div class="col-sm-8">
+                        <select id="target-invert" class="form-control">
+                          <option value="false">False</option>
+                          <option value="true">True</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="target-offset" class="col-sm-4 control-label">Offset</label>
+                      <div class="col-sm-8">
+                        <input type="number" min="0" max="180" class="form-control" 
+                          step="1" id="target-offset" placeholder="0">
+                      </div>
+                    </div>
+
                   </form>
 
 
