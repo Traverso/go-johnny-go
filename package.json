@@ -3,6 +3,13 @@
   "version": "0.0.1",
   "description": "Browser based GUI to manage Johnny Five animations",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Traverso/go-johnny-go"
+  },
+  "bugs": {
+    "url": "https://github.com/Traverso/go-johnny-go/issues"
+  },
   "dependencies": {
     "body-parser": "^1.12.2",
     "http": "^0.0.0",
@@ -12,7 +19,10 @@
     "socket.io-client": "^1.3.5",
     "express": "^4.12.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
