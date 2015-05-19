@@ -21,7 +21,6 @@ Status: working the UIX
 
 ##Roadmap:
 * Manage ease type for keyFrames
-* Allow keyFrames to be null
 
 ## License
 Copyright (c) 2015 Ronald Jaramillo <ronald@burningservos.com>
