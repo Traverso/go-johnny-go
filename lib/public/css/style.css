@@ -31,6 +31,8 @@
 
 .disconnected { background-color:#cc3300; }
 .connected { background-color:#06E949; }
+
+.page-meat { display:none; }
 #segment-viewer { margin:20px;margin-top:10px; }
 
 #left-col { width:275px;float:left; }
@@ -40,16 +42,6 @@
                 line-height:350px;
                 position:absolute;top:0px;left:0px; }
 
-ul#target-list.nav>li { padding-left:3px;padding-top:3px;height:28px;cursor:pointer; }
-ul#target-list.nav>li:hover { background-color:#f3f3f3; }
-#target-list.nav>li.no-view .name { color:#e3e3e3; }
-#target-list .visibility { width:28px;float:left; }
-#target-list .name { width:150px;float:left; }
-#target-list .controls { width:85px;float:left; }
-#target-list .color { float:left;margin-right:3px;width:25px; }
-#target-list .red { background-color:#cc3300; }
-#target-list .blue { background-color:#4759B5; }
-#target-list .green { background-color:green; }
 
 ul#cue-list.nav>li { padding-left:3px;padding-top:3px;height:28px;cursor:pointer }
 ul#cue-list.nav>li:hover { background-color:#f3f3f3; }
@@ -62,6 +54,14 @@ ul#cue-list.nav>li:hover { background-color:#f3f3f3; }
 #graph-view { margin-bottom:10px;width:900px;height:310px; }
 .panel { border-radius:0px; }
 
+#projects-table { margin-left:20px;margin-right:10px;width:700px;float:left; }
+#projects-table #no-projects td { padding:20px;text-align:center; }
+#projects-table th.actions{ width:200px; }
+#projects-table .actions { display:none;float:right;padding-top:3px; }
+#projects-table td { vertical-align:middle; }
+#projects-table td a.name { display:block;padding-top:3px;height:25px;min-width:520px;float:left; }
+#projects-table td:hover { background-color:#f3f3f3; }
+
 #segments-table { margin-left:20px;margin-right:10px;width:700px;float:left; }
 #segments-table th.actions{ width:200px; }
 #segments-table #no-segments td { padding:20px;text-align:center; }
@@ -69,6 +69,23 @@ ul#cue-list.nav>li:hover { background-color:#f3f3f3; }
 #segments-table td { vertical-align:middle; }
 #segments-table td a.name { display:block;padding-top:3px;height:25px;min-width:520px;float:left; }
 #segments-table td:hover { background-color:#f3f3f3; }
+
+#targets-table { margin-left:20px;margin-right:10px;width:700px;float:left; }
+#targets-table th.actions{ width:200px; }
+#targets-table td { vertical-align:middle; }
+#targets-table td a.name { display:block;padding-top:3px;height:25px;min-width:520px;float:left; }
+
+#targets-table tr.no-view td a.name { color:#e3e3e3; }
+#targets-table td:hover { background-color:#f3f3f3; }
+
+.targets .actions { float:right;display:none; }
+.targets .no-targets td { padding:20px;text-align:center; }
+.targets .color { float:left;margin-right:3px;width:25px; }
+.targets .visibility { width:28px;float:left; }
+.targets tr.no-view td a.name { color:#e3e3e3; }
+
+#targets-table-segment { border:none;margin-bottom:0; }
+#targets-table-segment td { border:none; }
 
 #playlist-table { width:300px;margin-right:10px;margin-left:20px; }
 #playlist-table #no-playlist-item td { padding:20px;text-align:center; } 
@@ -87,3 +104,13 @@ ul#cue-list.nav>li:hover { background-color:#f3f3f3; }
   padding-bottom:10px;
   margin-bottom:30px;
 }
+
+#project-settings
+{
+  padding-right:30px;
+  text-align:right;
+  border-bottom:1px solid #e3e3e3;
+  padding-bottom:10px;
+  margin-bottom:30px;
+}
+

@@ -19,6 +19,83 @@
   </head>
   <body>
 
+     <div class="modal fade" id="target-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+              aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Target</h4>
+          </div>
+          <div class="modal-body">
+
+              <form class="form-horizontal">
+
+
+                <div class="form-group">
+                  <label for="target-color" class="col-sm-4 control-label">Color</label>
+                  <div class="col-sm-8">
+                    <input type="color" id="target-color" placeholder="color">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="target-name" class="col-sm-4 control-label">Name</label>
+                  <div class="col-sm-8">
+                    <input type="hidden" id="target-id">
+                    <input type="text" class="form-control" id="target-name" placeholder="Name">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="target-pin" class="col-sm-4 control-label">Pin number</label>
+                  <div class="col-sm-8">
+                    <input type="number" min="1" max="20" class="form-control" 
+                      step="1" id="target-pin" placeholder="Pin number">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="target-controller" class="col-sm-4 control-label">Controller</label>
+                  <div class="col-sm-8">
+                    <select id="target-controller" class="form-control">
+                      <option value="Standard">Standard</option>
+                      <option value="PCA9685">PCA9685</option>
+                    </select>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="target-invert" class="col-sm-4 control-label">Is inverted</label>
+                  <div class="col-sm-8">
+                    <select id="target-invert" class="form-control">
+                      <option value="false">False</option>
+                      <option value="true">True</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="target-offset" class="col-sm-4 control-label">Offset</label>
+                  <div class="col-sm-8">
+                    <input type="number" min="0" max="180" class="form-control" 
+                      step="1" id="target-offset" placeholder="0">
+                  </div>
+                </div>
+
+              </form>
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button id="save-target" type="button" class="btn btn-primary">Save</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     <div class="modal fade" id="export-modal">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -53,11 +130,64 @@
             <div class="status-light connected status-connected">&nbsp;</div>
           </span>
     </div>
-    
-    <div id="segments-page">
+
+    <div id="projects-page" class="page-meat">
         <ol class="breadcrumb">
-          <li class="active">Segments</li>
+          <li class="active">Projects</li>
         </ol>
+
+        <table id="projects-table" class="table table-condensed table-bordered">
+          <thead>
+            <tr>
+                <th colspan="2">
+                    Projects
+
+                    <button class="btn btn-default btn-xs pull-right add-project" title="Add Project">
+                      <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="no-projects">
+              <td colspan="2">No projects yet, <button class="btn btn-link add-project">add project</button></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    
+    <div id="segments-page" class="page-meat">
+        <ol class="breadcrumb">
+          <li><a href="#" class="projects">Projects</a></li>
+          <li class="active">
+            <span class="project-name"></span>
+          </li>
+        </ol>
+
+        <div id="project-settings">
+         <form class="form-inline">
+           <span style="margin-right:20px">
+               <label>Project name:</label>
+               <input type="text" id="project-name" value="" class="form-control input-sm" style="width:300px"/>
+           </span>
+
+           <span style="margin-left:10px;margin-right:20px;">
+
+                 <button class="btn btn-default btn-sm" id="export-project" >
+                    <span class="glyphicon glyphicon-download-alt"></span> 
+                    Export
+                 </button>
+
+                 <button class="btn btn-default btn-sm" id="save-project">
+                    <span class="glyphicon glyphicon-floppy-disk"></span> 
+                    Save
+                 </button>
+
+                 <img src="images/ajax-loader.gif" id="save-project-loading" style="display:none"/>
+
+           </span>
+         </form>
+       </div>
 
         <table id="segments-table" class="table table-condensed table-bordered">
           <thead>
@@ -74,6 +204,27 @@
           <tbody>
             <tr id="no-segments">
               <td colspan="2">No segments yet, <button class="btn btn-link add-segment">add segment</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table id="targets-table" class="targets table table-condensed table-bordered">
+          <thead>
+            <tr>
+                <th colspan="2">
+
+                    <span class="glyphicon glyphicon-record"></span>
+                    Targets
+
+                    <button class="btn btn-default btn-xs pull-right add-target" title="Add Target">
+                      <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="no-targets">
+              <td colspan="2">No targets yet, <button class="btn btn-link add-target">add target</button></td>
             </tr>
           </tbody>
         </table>
@@ -116,16 +267,15 @@
 
     </div>
 
-    <div id="segment-page">
+    <div id="segment-page" class="page-meat">
 
         <ol class="breadcrumb">
-          <li><a href="#" class="segments-overview">Segments</a></li>
+          <li><a href="#" class="projects">Projects</a></li>
+          <li><a href="#" class="segments-overview project-name">Segments</a></li>
           <li class="active segment-name">New Segment</li>
         </ol>
 
-        
          <div id="segment-viewer">
-
 
           <div class="row">
 
@@ -133,7 +283,7 @@
 
 
                <form class="form-inline">
-                 <span class="segment-name" style="margin-right:20px">
+                 <span class="segment-name-wrap" style="margin-right:20px">
                    <label>Name:</label>
                    <input type="text" id="segment-name" value="New Segment" class="form-control input-sm"/>
                  </span>
@@ -195,7 +345,34 @@
              
              <div id="left-col">
 
-               <div id="targets" class="panel panel-default" style="margin-bottom:10px;border-radius:0px">
+
+               <div id="targets" class="targets panel panel-default" style="margin-bottom:10px;border-radius:0px">
+                  <div class="panel-heading">
+                     <span class="glyphicon glyphicon-record"></span>
+
+                    Targets
+
+                    <button class="add-target btn btn-default btn-xs pull-right" title="Add Target">
+                      <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                  </div>
+
+                  <div class="panel-body">
+               
+                  <table id="targets-table-segment" class="targets table table-condensed table-bordered">
+                    <tbody>
+                      <tr class="no-targets">
+                        <td colspan="2">No targets yet, <button class="btn btn-link add-target">add target</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  </div>
+                </div>
+
+
+               <!--
+               <div id="targets" class="targets panel panel-default" style="margin-bottom:10px;border-radius:0px">
                   <div class="panel-heading">
                      <span class="glyphicon glyphicon-record"></span>
 
@@ -209,13 +386,16 @@
                   <div class="panel-body">
                   
                     <ul id="target-list" class="nav nav-stacked">
-                      <li id="no-targets">
+                      <li class="no-targets">
                         No targets, <button class="btn-link" title="Add Target">create one</button>
                       </li>
                     </ul>
 
                   </div>
-                </div><!--end targets-->
+                </div>
+                -->
+                
+                <!--end targets-->
 
                  <div id="cues" class="panel panel-default">
                     <div class="panel-heading">
@@ -290,91 +470,41 @@
 
 
 
-         <div class="modal fade" id="target-modal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"
-                  aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Target</h4>
-              </div>
-              <div class="modal-body">
-
-                  <form class="form-horizontal">
-
-
-                    <div class="form-group">
-                      <label for="target-color" class="col-sm-4 control-label">Color</label>
-                      <div class="col-sm-8">
-                        <input type="color" id="target-color" placeholder="color">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="target-name" class="col-sm-4 control-label">Name</label>
-                      <div class="col-sm-8">
-                        <input type="hidden" id="target-id">
-                        <input type="text" class="form-control" id="target-name" placeholder="Name">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="target-pin" class="col-sm-4 control-label">Pin number</label>
-                      <div class="col-sm-8">
-                        <input type="number" min="1" max="20" class="form-control" 
-                          step="1" id="target-pin" placeholder="Pin number">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="target-controller" class="col-sm-4 control-label">Controller</label>
-                      <div class="col-sm-8">
-                        <select id="target-controller" class="form-control">
-                          <option value="Standard">Standard</option>
-                          <option value="PCA9685">PCA9685</option>
-                        </select>
-                      </div>
-                    </div>
-
-
-                    <div class="form-group">
-                      <label for="target-invert" class="col-sm-4 control-label">Is inverted</label>
-                      <div class="col-sm-8">
-                        <select id="target-invert" class="form-control">
-                          <option value="false">False</option>
-                          <option value="true">True</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="target-offset" class="col-sm-4 control-label">Offset</label>
-                      <div class="col-sm-8">
-                        <input type="number" min="0" max="180" class="form-control" 
-                          step="1" id="target-offset" placeholder="0">
-                      </div>
-                    </div>
-
-                  </form>
-
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="save-target" type="button" class="btn btn-primary">Save</button>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
 
     </div><!--end segment-page-->
 
     <div id="templates" style="display:none">
+
+        <table>
+            <tbody id="projects-template">
+              <tr>
+                <td >
+                  <a href="#" class="edit-project name" title="Open Project"></a>
+
+                  <span class="actions">
+
+                    <button class="btn btn-default btn-xs edit-project" title="Open Project" >
+                      <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+
+                    <button class="btn btn-default btn-xs duplicate-project" title="Duplicate Project">
+                      <span class="glyphicon glyphicon-duplicate"></span>
+                    </button>
+
+                    <button class="btn btn-default btn-xs delete-project" title="Delete Project" >
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                  </span>
+
+                </td>
+              </tr>
+            </tbody>
+        </table>
+
         <table>
             <tbody id="segment-template">
               <tr>
                 <td >
-                  
                   <a href="#" class="edit-segment name" title="Edit Segment"></a>
 
                   <span class="actions">
@@ -431,11 +561,16 @@
             </tbody>
         </table>
 
-        <ul id="target-template">
-              <li>
-                <button class="color btn btn-default btn-xs">&nbsp;</button>
-                <div class="name edit-target">Coxa</div>
-                <div class="controls">
+
+        <table>
+            <tbody id="target-table-template">
+              <tr>
+                <td>
+                  <button class="color btn btn-default btn-xs">&nbsp;</button>
+                  <a href="#" class="name edit-target"></a>
+
+
+                  <span class="actions">
 
                   <div class="visibility">
                       <button class="btn btn-default btn-xs hide-show-target">
@@ -443,16 +578,22 @@
                       </button>
                   </div>
 
-                  <button class="btn btn-default btn-xs edit-target">
-                      <span class="glyphicon glyphicon-pencil"></span>
-                  </button>
+                    <button class="btn btn-default btn-xs edit-target">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
 
-                  <button class="btn btn-default btn-xs delete-target">
-                      <span class="glyphicon glyphicon-trash"></span>
-                  </button>
-                </div>
-              </li>
-        </ul>
+                    <button class="btn btn-default btn-xs delete-target">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+
+                  </span>
+
+                </td>
+              </tr>
+            </tbody>
+        </table>
+
+
         <ul id="cuepoint-template">
               <li>
                 <div class="name edit-cue">0.0</div>
