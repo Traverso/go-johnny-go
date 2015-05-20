@@ -165,7 +165,7 @@
         </ol>
 
         <div id="project-settings">
-         <form class="form-inline">
+         <div class="form-inline">
            <span style="margin-right:20px">
                <label>Project name:</label>
                <input type="text" id="project-name" value="" class="form-control input-sm" style="width:300px"/>
@@ -186,7 +186,7 @@
                  <img src="images/ajax-loader.gif" id="save-project-loading" style="display:none"/>
 
            </span>
-         </form>
+         </div>
        </div>
 
         <table id="segments-table" class="table table-condensed table-bordered">
@@ -241,11 +241,11 @@
                       <span class="glyphicon glyphicon-play"></span> 
                    </button>
 
-                   <button id="loop-playlist" class="loop btn btn-default btn-xs pull-right" 
-                             title="Loop"
-                             data-toggle="button"
-                             aria-pressed="false" autocomplete="off">
-                      <span class="glyphicon glyphicon-retweet"></span> 
+                   <button id="playlist-loop" 
+                      style="margin-left:4px" 
+                      class="loop btn btn-default btn-xs pull-right" data-toggle="button"
+                      title="loop" aria-pressed="false" autocomplete="off">
+                      <span class="glyphicon glyphicon-off"></span> 
                    </button>
 
                    <button id="export-playlist" class="play btn btn-default btn-xs pull-right" 
@@ -282,7 +282,7 @@
              <div id="segment-settings">
 
 
-               <form class="form-inline">
+               <div class="form-inline">
                  <span class="segment-name-wrap" style="margin-right:20px">
                    <label>Name:</label>
                    <input type="text" id="segment-name" value="New Segment" class="form-control input-sm"/>
@@ -334,7 +334,7 @@
 
                    <img src="images/ajax-loader.gif" id="save-loading" style="display:none"/>
                  </span>
-                </form>
+                </div>
 
 
                </div><!--end segment settings-->
