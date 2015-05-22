@@ -19,6 +19,31 @@
   </head>
   <body>
 
+     <div class="modal fade" id="easing-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+              aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Easing</h4>
+          </div><!--end modal-header-->
+          <div class="modal-body">
+             <label>Easing type:</label>
+             <select id="keyframe-easing" class="easing-list form-control"></select>
+             <input type="hidden" id="keyframe-target-idx" />
+             <input type="hidden" id="keyframe-cue-idx" />
+          </div><!--end modal-body-->
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button id="save-easing" type="button" class="btn btn-primary">Save</button>
+          </div>
+ 
+        </div><!--end modal-content-->
+      </div>
+     </div>
+
+
      <div class="modal fade" id="target-modal">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -302,7 +327,7 @@
 
                  <span class="segment-duration" style="margin-right:20px">
                    <label>Easing:</label>
-                   <select id="segment-easing" class="form-control"></select>
+                   <select id="segment-easing" class="easing-list form-control"></select>
                  </span>
 
                  <span style="margin-left:50px;margin-right:20px;">
